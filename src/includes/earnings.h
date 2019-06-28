@@ -11,18 +11,18 @@ struct date {
 
 typedef struct _salary {
     uint64_t amount;
-    struct date sDate;
+    struct date date;
 }salary;
 
 typedef struct _bonus {
     uint64_t amount;
-    struct date sDate;
+    struct date date;
 }bonus;
 
 typedef struct _othEarns {
     char *src;
     uint64_t amount;
-    struct date sDate;
+    struct date date;
 }othEarns;
 
 
