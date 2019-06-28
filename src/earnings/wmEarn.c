@@ -3,16 +3,17 @@
 
 #define INVALID_PTR 1
 #define CONDITION_FAIL 2
-#define WNC(condition) \
+#define RET_FAIL 2
+#define WMC_RET(call) \
 {\
-    if(condition) {\
+    if(call) {\
         printf("ERR: %s:%d\n", __func__, __LINE__);\
-        err = CONDITION_FAIL;
+        err = RET_FAIL;\
         goto Finally;\
     }\
 }
 
-#define WNC_PTR(ptr) \
+#define WMC_PTR(ptr) \
 {\
     if(ptr == NULL) {\
         printf("ERR: %s:%d [INVALID PTR]\n", __func__, __LINE__);\
@@ -23,7 +24,7 @@
 
 #define ASSIGN_STR(ptr, str) \
 {\
-    WNC_PTR(str);\
+    WMC_PTR(str);\
     ptr = (char *) calloc(strlen(str) + 1, 1);\
     strncpy(ptr, str, strlen(str));\
 }
@@ -42,9 +43,9 @@ void fillDate(Date *d)
 int addSalary(salary *s, uint64_t amount)
 {
     int err = 0;
-    WNC_PTR(s);
+    WMC_PTR(s);
     s.amount = amount;
-    fillDate(s->date);
+    fillDate(&s->date);
 
 Finally:
     return err;
@@ -53,9 +54,9 @@ Finally:
 int addBonus(bonus *b, uint64_t amount)
 {
     int err = 0;
-    WNC_PTR();
+    WMC_PTR();
     b.amount = amount;
-    fillDate(b->date);
+    fillDate(&b->date);
 Finally:
     return err;
 }
@@ -63,10 +64,11 @@ Finally:
 int addOthEarns(othEarns *o, char *src, uint64_t amount)
 {
     int err = 0;
-    WNC_PTR(o);
-    WNC_PTR(type);
+    WMC_PTR(o);
+    WMC_PTR(type);
     ASSIGN_STR(o->src, src);
     o->amount = amount; 
+    fillDate(&o->date);
 Finally:
     return err;
 }
