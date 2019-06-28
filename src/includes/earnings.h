@@ -3,27 +3,27 @@
 
 #define MAX_OTHE_EARNINGS 10
 
-struct date {
+typedef struct date {
     uint32_t day;
     uint32_t month;
     uint32_t year;
-};
+}Date;
 
 typedef struct _salary {
     uint64_t amount;
     struct date date;
-}salary;
+}Salary;
 
 typedef struct _bonus {
     uint64_t amount;
     struct date date;
-}bonus;
+}Bonus;
 
 typedef struct _othEarns {
     char *src;
     uint64_t amount;
     struct date date;
-}othEarns;
+}OthEarns;
 
 
 /**
@@ -32,9 +32,9 @@ typedef struct _othEarns {
   * o : other earnings
   */
 typedef struct _earnings {
-    salary s;
-    bonus b;
-    othEarns o[MAX_OTHE_EARNINGS];
-}earnings;
+    Salary s;
+    Bonus b;
+    OthEarns o[MAX_OTHE_EARNINGS];
+}Earnings;
 
 #endif
