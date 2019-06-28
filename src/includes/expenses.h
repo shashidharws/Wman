@@ -57,7 +57,7 @@ typedef struct _dining {
 }Dining;
 
 typedef struct _vehicle {
-    Items items[[MAX_ITEMS];
+    Items items[MAX_ITEMS];
     uint64_t total_amount;
     int total_quantity;
     uint64_t amount;

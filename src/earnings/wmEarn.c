@@ -54,7 +54,7 @@ Finally:
 int addBonus(bonus *b, uint64_t amount)
 {
     int err = 0;
-    WMC_PTR();
+    WMC_PTR(b);
     b.amount = amount;
     fillDate(&b->date);
 Finally:
@@ -65,7 +65,7 @@ int addOthEarns(othEarns *o, char *src, uint64_t amount)
 {
     int err = 0;
     WMC_PTR(o);
-    WMC_PTR(type);
+    WMC_PTR(src);
     ASSIGN_STR(o->src, src);
     o->amount = amount; 
     fillDate(&o->date);
