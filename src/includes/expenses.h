@@ -12,9 +12,9 @@
 #define MAX_VEHICLE 62
  
 typedef struct _items {
-    char *i_name;
+    char *Name;
     uint64_t amount;
-    int i_quantity;
+    int Quantity;
 }Items;
 
 typedef struct _emis {
@@ -31,22 +31,22 @@ typedef struct _bills {
 
 typedef struct _grocery {
     Items items[MAX_ITEMS];
-    uint64_t total_amount;
-    int total_items;
+    uint64_t totalAmount;
+    int totalItems;
     Date date;
 }Grocery;
 
 typedef struct _travel {
     Items items[MAX_ITEMS];
-    uint64_t total_amount;
-    int total_items;
+    uint64_t totalAmount;
+    int totalItems;
     Date date;
 }Travel;
 
 typedef struct _shopping {
     Items items[MAX_ITEMS];
-    uint64_t total_amount;
-    int total_quantity;
+    uint64_t totalAmount;
+    int totalQuantity;
     Date date;
 }Shopping;
 
@@ -58,16 +58,15 @@ typedef struct _dining {
 
 typedef struct _vehicle {
     Items items[MAX_ITEMS];
-    uint64_t total_amount;
-    int total_quantity;
-    uint64_t amount;
+    uint64_t totalAmount;
+    int totalQuantity;
     Date date;
 }Vehicle;
 
 typedef struct _othExp {
     Items items[MAX_ITEMS];
-    uint64_t total_amount;
-    int total_quantity;
+    uint64_t totalAmount;
+    int totalQuantity;
     Date date;
 }OthExp;
 

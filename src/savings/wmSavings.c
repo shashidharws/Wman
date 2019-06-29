@@ -1,5 +1,10 @@
 #include <stdio.h>
+#include <sys/time.h>
+#include <time.h>
+#include <stdlib.h>
+#include <string.h>
 #include "savings.h"
+#include "misc.h"
 
 int addSavings(savings *s, char *scheme, uint64_t monthly_invested)
 {
