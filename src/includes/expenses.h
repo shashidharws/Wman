@@ -89,6 +89,6 @@ typedef struct _expenses {
     Dining d[MAX_DINING];
     Vehicle v[MAX_VEHICLE];
     OthExp o[MAX_OTHER_EXPENSES];
-}expenses;
+}Expenses;
 
 #endif
