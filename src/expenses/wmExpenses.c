@@ -6,7 +6,7 @@
 #include "expenses.h"
 #include "misc.h"
 
-int addEmis(emis *e, char *name, uint64_t amount)
+int addEmis(Emis *e, char *name, uint64_t amount)
 {
     int err = 0;
     WMC_PTR(e);
@@ -18,7 +18,7 @@ Finally:
     return err;
 }
 
-int addBills(bills *b, char *name, uint64_t amount)
+int addBills(Bills *b, char *name, uint64_t amount)
 {
     int err = 0;
     WMC_PTR(b);
@@ -30,7 +30,7 @@ Finally:
     return err;
 }
 
-int addGrocery(grocery *g)
+int addGrocery(Grocery *g)
 {
     int err = 0;
     int i;
@@ -45,7 +45,7 @@ Finally:
     return err;
 }
 
-int addTravel(travel *t)
+int addTravel(Travel *t)
 {
     int err = 0;
     int i;
@@ -60,7 +60,7 @@ Finally:
     return err;
 }
 
-int addShopping(shopping *s)
+int addShopping(Shopping *s)
 {
     int err = 0;
     int i;
@@ -75,7 +75,7 @@ Finally:
     return err;
 }
 
-int addDining(dining *d, char *summary, uint64_t amount)
+int addDining(Dining *d, char *summary, uint64_t amount)
 {
     int err = 0;
     WMC_PTR(d);
@@ -87,7 +87,7 @@ Finally:
     return err;
 }
 
-int addVehicle(vehicle *v)
+int addVehicle(Vehicle *v)
 {
 	int err = 0;
 	int i;
@@ -102,7 +102,7 @@ Finally:
  	return err;
 }
 
-int addOthExp(othExp *o)
+int addOthExp(OthExp *o)
 {
     int err = 0;
     int i;

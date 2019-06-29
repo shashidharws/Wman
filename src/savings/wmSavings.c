@@ -6,7 +6,7 @@
 #include "savings.h"
 #include "misc.h"
 
-int addSavings(savings *s, char *scheme, uint64_t monthly_invested)
+int addSavings(Savings *s, char *scheme, uint64_t monthly_invested)
 {
     int err = 0;
     WMC_PTR(s);
