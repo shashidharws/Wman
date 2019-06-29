@@ -34,12 +34,12 @@ int addGroceryWithItems(Grocery *g)
 {
     int err = 0;
     int i;
-    int total_amount = 0;
+    int totalAmount = 0;
     WMC_PTR(g);
     addItems(g->items);
-    for(i = 0; i < g->total_items; i++)
+    for(i = 0; i < g->totalItems; i++)
     {
-        g->total_amount += g->items[i].amount;
+        g->totalAmount += g->items[i].amount;
     }    
     fillDate(&g->date);
 Finally:
@@ -49,7 +49,7 @@ Finally:
 int addGrocery(Grocery *g, uint64_t amount)
 {
     WMC_PTR(g);
-    g->total_amount = amount;
+    g->totalAmount = amount;
     fillDate(&g->date);
 }
 
@@ -57,7 +57,7 @@ int addTravel(Travel *t)
 {
     int err = 0;
     int i;
-    int total_amount = 0;
+    int totalAmount = 0;
     WMC_PTR(t);
     for(i = 0; i < t->totalItems; i++)
     {
@@ -72,7 +72,7 @@ int addShoppingWithItems(Shopping *s)
 {
     int err = 0;
     int i;
-    int total_amount = 0;
+    int totalAmount = 0;
     WMC_PTR(s);
     for(i = 0; i < s->totalItems; i++)
     {
@@ -106,11 +106,11 @@ int addVehicle(Vehicle *v)
 {
     int err = 0;
     int i;
-    int total_amount = 0;
+    int totalAmount = 0;
     WMC_PTR(v);
     for(i = 0; i < v->total_items; i++)
     {
-        v->total_amount += v->items[i].amount;
+        v->totalAmount += v->items[i].amount;
     }
     fillDate(&v->date);
 Finally:
@@ -121,11 +121,11 @@ int addOthExp(OthExp *o)
 {
     int err = 0;
     int i;
-    int total_amount = 0;
+    int totalAmount = 0;
     WMC_PTR(o);
     for(i = 0; i < o->total_items; i++)
     {
-        o->total_amount += o->items[i].amount;
+        o->totalAmount += o->items[i].amount;
     }
     fillDate(&t->date);
 Finally:
@@ -135,7 +135,7 @@ Finally:
 int addOthExp(Grocery *o, uint64_t amount)
 {
     WMC_PTR(o);
-    o->total_amount = amount;
+    o->totalAmount = amount;
     fillDate(&o->date);
 }
 
