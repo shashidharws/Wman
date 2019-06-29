@@ -2,7 +2,7 @@
 #include "profile.h"
 User *_uPtr;
 
-main()
+int main()
 {
     char buf[MAX_STR_LEN];
     char c;
@@ -17,14 +17,16 @@ main()
         c = getchar();
         switch(c) {
             case 'e' :
-                    addUserEarnings(&_uPtr->earns);
+                    addUserEarnings(_uPtr);
                     break;
+#if 0
             case 'x' : 
                     addUserExpenses(&_uPtr->exps);
                     break;
             case 's' :
                     addUserSavings(&_uPtr->s);
                     break;
+#endif
             default:
                 printf("Invalid option %c\n", c);
         }

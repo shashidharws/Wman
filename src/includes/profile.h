@@ -20,4 +20,9 @@ typedef struct _family {
     int club;
 }Family;
 
+User *createUser(char *name);
+int addUserEarnings(User *u);
+int addUserSavings(User *u);
+int addUserExpenses(User *u);
+
 #endif

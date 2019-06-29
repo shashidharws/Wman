@@ -34,4 +34,5 @@ typedef struct _earnings {
     int nOthEarns;
 }Earnings;
 
+uint64_t addEarnings(Earnings *e);
 #endif

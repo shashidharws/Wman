@@ -3,6 +3,7 @@
 #include <string.h>
 #include "profile.h"
 #include "misc.h"
+#include "earnings.h"
 
 User *createUser(char *name)
 {
@@ -27,3 +28,16 @@ int addUserEarnings(User *u)
 {
     u->balance += addEarnings(&u->earns);
 }
+
+#if 0
+int addUserSavings(User *u)
+{
+    u->balance -= addSavings(&u->s[u->nSavings]);
+    u->nSavings++;
+}
+
+int addUserExpenses(User *u)
+{
+    u->balance -= addExpenses(&u->exps); 
+}
+#endif

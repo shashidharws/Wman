@@ -1,6 +1,10 @@
 #ifndef __MISC_H__
 #define __MISC_H__
+#include <sys/types.h>
+#include <inttypes.h>
+#include <stdlib.h>
 
+#define MAX_STR_LEN 50
 #define INVALID_PTR 1
 #define CONDITION_FAIL 2
 #define RET_FAIL 2

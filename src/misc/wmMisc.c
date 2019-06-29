@@ -18,6 +18,7 @@ void fillDate(Date *d)
 int fetchItemsFromCli(Items *items, int maxItems)
 {
     i = 0;
+    int err = 0;
     char iName[MAX_ITEM_NAME_LEN];
     char amount[10];
     char quantity[10];
@@ -50,6 +51,7 @@ int fetchItemsFromCli(Items *items, int maxItems)
     }
     if(i == maxItems)
         printf("MAX Items reached!!!");
+Finally:
     return i;
 }
 

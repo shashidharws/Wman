@@ -19,7 +19,7 @@ Finally:
     return err;
 }
 
-int fetchSavingsFromCli(Savings *s)
+uint64_t fetchSavingsFromCli(Savings *s)
 {
     char scheme[MAX_SCHEME_LEN];
     char investment[10];
@@ -39,11 +39,8 @@ int fetchSavingsFromCli(Savings *s)
     return s->investment;
 }
 
-addSavings(Savings *s)
+uint64_t addSavings(Savings *s)
 {
     Printf("Adding Savings\n");
-    fetchSavingsFromCli(s);
-
+    return fetchSavingsFromCli(s);
 }
-
-
