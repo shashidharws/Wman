@@ -80,7 +80,7 @@ int fetchEarnsFromCli(Earnings *e)
     }
 }
 
-addEarnings(Earnings *e)
+int addEarnings(Earnings *e)
 {
     Printf("Adding Earnings\n");
     fetchEarnsFromCli(e);

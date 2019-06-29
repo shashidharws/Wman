@@ -30,12 +30,13 @@ Finally:
     return err;
 }
 
-int addGrocery(Grocery *g)
+int addGroceryWithItems(Grocery *g)
 {
     int err = 0;
     int i;
     int total_amount = 0;
     WMC_PTR(g);
+    addItems(g->items);
     for(i = 0; i < g->total_items; i++)
 	{
 		g->total_amount += g->items[i].amount;
@@ -43,6 +44,13 @@ int addGrocery(Grocery *g)
     fillDate(&g->date);
 Finally:
     return err;
+}
+
+int addGrocery(Grocery *g, uint64_t amount)
+{
+    WMC_PTR(g);
+    g->total_amount = amount;
+    fillDate(&g->date);
 }
 
 int addTravel(Travel *t)
@@ -115,4 +123,52 @@ int addOthExp(OthExp *o)
     fillDate(&t->date);
 Finally:
     return err;
+}
+
+int fetchExpensesFromCli(Expenses *e)
+{
+    char c;
+    char buf[100];
+    printf("Type of expense (e - emi, b - bills, g - grocery, t -travel, s -shopping, d - Dining, v - Vehicle,            o - other):");
+    getchar(c);
+    switch (c) {
+        case 'e':
+                break;
+        case 'b':
+                break;
+        case 'g':
+                printf("Adding Grocery\n");
+                printf("Do you want to add item list?(y//n) [y]:");
+                getchar(c);
+                if(c == n) {
+                    printf("Enter total amount:");
+                    if (fgets(buf, 100, stdin) == NULL) {
+                        perror("Grocery");
+                        break;
+                    }
+                    addGrocery(&e->g, atoi(buf));
+                } else
+                    addGroceryWithItems(&e->g);
+                break;
+        case 't':
+                break;
+        case 's':
+                break;
+        case 'd':
+                break;
+        case 'v':
+                break;
+        case 'o':
+                break;
+        default:
+                printf("Invalid option %c!!! \t supported options <e, b, g, t, s, d, v, o>\n", c);
+    }
+
+}
+
+int addExpenses(Expenses *e)
+{
+    printf("Adding expenses\n");
+    fetchExpensesFromCli(e)
+
 }
