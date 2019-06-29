@@ -39,7 +39,50 @@ Finally:
     return err;
 }
 
-int createEarns(Earnings *e)
+int fetchEarnsFromCli(Earnings *e)
 {
-    e->nOthEarns = 0;
+    char c;
+    char buf[100];
+    printf("Type of earnings (s - salary, b - bonus, o - others):");
+    getchar(c);
+    switch (c) {
+        case 's':
+                printf("Enter salary amount:");
+                if (fgets(buf, 100, stdin) == NULL)
+                    perror("Salary");
+                else
+                    addSalary(&e->s, atoi(buf));
+                break;
+        case 'b':
+                printf("Enter bonus amount:");
+                if (fgets(buf, 100, stdin) == NULL)
+                    perror("Bonus");
+                else
+                    addBonus(&e->b, atoi(buf));
+                break;
+        case 'o':
+                char src[MAX_STR_LEN];
+                printf("Enter other Earning source:");
+                if (fgets(src, 100, stdin) == NULL) {
+                    perror("other Earnings source");
+                    break;
+                }
+                printf("Enter amount:");
+                if (fgets(buf, 100, stdin) == NULL) {
+                    perror("other Earnings amount");
+                    break;
+                }
+                addOthEarns(&e->o[e->nOthEarns], src, atoi(buf));
+                e->nOthEarns++;
+                break;
+        default :
+            printf("Invalid option %c!!! \t supported options <s, b, o>\n", c);
+    }
+}
+
+addEarnings(Earnings *e)
+{
+    Printf("Adding Earnings\n");
+    fetchEarnsFromCli(e);
+
 }
