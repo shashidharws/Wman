@@ -46,7 +46,7 @@ typedef struct _travel {
 typedef struct _shopping {
     Items items[MAX_ITEMS];
     uint64_t totalAmount;
-    int totalQuantity;
+    int totalItems;
     Date date;
 }Shopping;
 
@@ -59,14 +59,14 @@ typedef struct _dining {
 typedef struct _vehicle {
     Items items[MAX_ITEMS];
     uint64_t totalAmount;
-    int totalQuantity;
+    int totalItems;
     Date date;
 }Vehicle;
 
 typedef struct _othExp {
     Items items[MAX_ITEMS];
     uint64_t totalAmount;
-    int totalQuantity;
+    int totalItems;
     Date date;
 }OthExp;
 
@@ -82,13 +82,21 @@ typedef struct _othExp {
   */
 typedef struct _expenses {
     Emis e[MAX_EMIS];
+    int nEmis;
     Bills b[MAX_BILLS];
+    int nBills;
     Grocery g[MAX_GROCERY];
+    int nGroc;
     Travel t[MAX_TRAVEL];
+    int nTrav;
     Shopping s[MAX_SHOPPING];
+    int nShop;
     Dining d[MAX_DINING];
+    int nDine;
     Vehicle v[MAX_VEHICLE];
+    int nVehi;
     OthExp o[MAX_OTHER_EXPENSES];
+    int nOthe;
 }Expenses;
 
 #endif
