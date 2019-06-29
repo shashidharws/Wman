@@ -15,6 +15,7 @@ int main()
     while(1) {
         printf("Wealth type (e - earnings, x - expenses, s - savings) :");
         c = getchar();
+        getchar();
         switch(c) {
             case 'e' :
                     addUserEarnings(_uPtr);
@@ -23,8 +24,26 @@ int main()
             case 'x' : 
                     addUserExpenses(&_uPtr->exps);
                     break;
+#endif
             case 's' :
-                    addUserSavings(&_uPtr->s);
+                    addUserSavings(_uPtr);
+                    break;
+            default:
+                printf("Invalid option %c\n", c);
+        }
+        printf("Print Wealth ? (e - earnings, x - expenses, s - savings) :");
+        c = getchar();
+        getchar();
+        switch(c) {
+            case 'e' :
+                    printAllMyEarnings(_uPtr->earns);
+                    break;
+#if 0
+            case 'x' : 
+                    addUserExpenses(&_uPtr->exps);
+                    break;
+            case 's' :
+                    addUserSavings(_uPtr);
                     break;
 #endif
             default:
@@ -32,3 +51,4 @@ int main()
         }
     }
 }
+

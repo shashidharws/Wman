@@ -35,4 +35,5 @@ typedef struct _earnings {
 }Earnings;
 
 uint64_t addEarnings(Earnings *e);
+void printAllMyEarnings(Earnings e);
 #endif

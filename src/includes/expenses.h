@@ -1,22 +1,18 @@
 #ifndef __EXPENSES_H__
 #define __EXPENSES_H__
 
+#include "misc.h"
+
 #define MAX_EMIS 10
 #define MAX_BILLS 15
 #define MAX_SHOPPING 20
 #define MAX_OTHER_EXPENSES 25
 #define MAX_GROCERY 30
-#define MAX_ITEMS 50
 #define MAX_TRAVEL 10
 #define MAX_DINING 10
 #define MAX_VEHICLE 62
- 
-typedef struct _items {
-    char *Name;
-    uint64_t amount;
-    int Quantity;
-}Items;
 
+ 
 typedef struct _emis {
     char *name;
     uint64_t amount;

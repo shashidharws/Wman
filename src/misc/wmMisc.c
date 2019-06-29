@@ -10,14 +10,14 @@ void fillDate(Date *d)
     struct tm *now;
     gettimeofday(&tv, NULL);
     now = gmtime(&tv.tv_sec);
-    d->month = now->tm_mon;
+    d->month = now->tm_mon + 1;
     d->year = now->tm_year + 1900;
-    d->day = now->tm_wday;
+    d->day = now->tm_mday;
 }
 
 int fetchItemsFromCli(Items *items, int maxItems)
 {
-    i = 0;
+    int i = 0;
     int err = 0;
     char iName[MAX_ITEM_NAME_LEN];
     char amount[10];
@@ -26,7 +26,7 @@ int fetchItemsFromCli(Items *items, int maxItems)
     for(i = 0; i < maxItems; i++) {
         c = 'y';
         printf("Want to enter Item?(y\\n) [y]:"); 
-        getchar(c);
+        c = getchar();
         if(c == 'n')
             break;
         printf("###################################\n");
@@ -58,6 +58,10 @@ Finally:
 int addItems(Items *items)
 {
     printf("Adding Items \n");
-    fetchItemsFromCli(items);
+    fetchItemsFromCli(items, MAX_ITEMS);
+}
 
+void printDate(Date d)
+{
+    printf("[%u-%u-%u]", d.day, d.month, d.year);
 }

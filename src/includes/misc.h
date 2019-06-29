@@ -3,7 +3,9 @@
 #include <sys/types.h>
 #include <inttypes.h>
 #include <stdlib.h>
+#include <string.h>
 
+#define MAX_ITEMS 50
 #define MAX_STR_LEN 50
 #define INVALID_PTR 1
 #define CONDITION_FAIL 2
@@ -33,6 +35,12 @@
     strncpy(ptr, str, strlen(str));\
 }
 
+typedef struct _items {
+    char *name;
+    uint64_t amount;
+    int quantity;
+}Items;
+
 typedef struct date {
     uint32_t day;
     uint32_t month;
@@ -41,5 +49,6 @@ typedef struct date {
 
 
 void fillDate(Date *d);
+void printDate(Date d);
 
 #endif

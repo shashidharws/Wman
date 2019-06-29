@@ -2,14 +2,17 @@
 #define __PROFILE_H__
 #define MAX_FAMILY_MEMEBERS 10
 
+#include "misc.h"
 #include "profile.h"
 #include "earnings.h"
+#include  "savings.h"
 
 
 typedef struct _user {
     char *name;
     Earnings earns;
-    //Savings s;
+    Savings s[MAX_SAVINGS];
+    int nSavings;
     //Expenses exps;
     uint64_t balance;
 }User;

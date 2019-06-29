@@ -7,13 +7,13 @@
 #include "misc.h"
 #define MAX_SCHEME_LEN 100
 
-int addSavings(Savings *s, char *scheme, uint64_t investment)
+int addSavingsScheme(Savings *s, char *scheme, uint64_t investment)
 {
     int err = 0;
     WMC_PTR(s);
     WMC_PTR(scheme);
     ASSIGN_STR(s->scheme, scheme);
-    o->investment = investment;
+    s->investment = investment;
     fillDate(&s->date);
 Finally:
     return err;
@@ -21,6 +21,7 @@ Finally:
 
 uint64_t fetchSavingsFromCli(Savings *s)
 {
+    int err = 0;
     char scheme[MAX_SCHEME_LEN];
     char investment[10];
     printf("Enter saving scheme");
@@ -32,15 +33,18 @@ uint64_t fetchSavingsFromCli(Savings *s)
         ASSIGN_STR(s->scheme, scheme);
 
     printf("Investment:");
-    if (fgets(investment, 100, stdin) == NULL)
+    if(fgets(investment, 100, stdin) == NULL)
         perror("investment");
     else
         s->investment = atoi(investment);
+
+    fillDate(&s->date);
+Finally:
     return s->investment;
 }
 
 uint64_t addSavings(Savings *s)
 {
-    Printf("Adding Savings\n");
+    printf("Adding Savings\n");
     return fetchSavingsFromCli(s);
 }

@@ -31,6 +31,7 @@ int addOthEarns(OthEarns *o, char *src, uint64_t amount)
     int err = 0;
     WMC_PTR(o);
     WMC_PTR(src);
+    src[strlen(src) - 1] = '\0';
     ASSIGN_STR(o->src, src);
     o->amount = amount; 
     fillDate(&o->date);
@@ -46,6 +47,7 @@ uint64_t fetchEarnsFromCli(Earnings *e)
     uint64_t totalEarns = 0;
     printf("Type of earnings (s - salary, b - bonus, o - others):");
     c = getchar();
+    getchar();
     switch (c) {
         case 's':
                 printf("Enter salary amount:");
@@ -96,4 +98,35 @@ uint64_t addEarnings(Earnings *e)
     printf("Adding Earnings\n");
     return fetchEarnsFromCli(e);
 
+}
+
+void printSalary(Salary s)
+{
+    if(s.date.year != 0) {
+        printDate(s.date);
+        printf(" : Salary Amount \t\t:%lu\n", s.amount);
+    }
+}
+
+void printBonus(Bonus b)
+{
+    if(b.date.year != 0) {
+        printDate(b.date);
+        printf(" : Bonus amount \t\t:%lu\n", b.amount);
+    }
+}
+
+void printOtherEarnings(OthEarns o)
+{
+    printDate(o.date);
+    printf(" : %s\b \t\t %lu \n", o.src, o.amount);
+}
+
+void printAllMyEarnings(Earnings e)
+{
+    int i = 0;
+    printSalary(e.s);
+    printBonus(e.b);
+    for(i = 0; i < e.nOthEarns; i++)
+        printOtherEarnings(e.o[i]);
 }
