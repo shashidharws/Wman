@@ -11,6 +11,7 @@ typedef struct _user {
     Earnings earns;
     //Savings s;
     //Expenses exps;
+    uint64_t balance;
 }User;
 
 typedef struct _family {

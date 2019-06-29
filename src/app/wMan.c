@@ -17,13 +17,13 @@ main()
         c = getchar();
         switch(c) {
             case 'e' :
-                    addEarnings(&_uPtr->earns);
+                    addUserEarnings(&_uPtr->earns);
                     break;
             case 'x' : 
-                    addExpenses(&_uPtr->exps);
+                    addUserExpenses(&_uPtr->exps);
                     break;
             case 's' :
-                    addSavings(&_uPtr->s);
+                    addUserSavings(&_uPtr->s);
                     break;
             default:
                 printf("Invalid option %c\n", c);

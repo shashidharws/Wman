@@ -12,7 +12,6 @@ int addSalary(Salary *s, uint64_t amount)
     WMC_PTR(s);
     s->amount = amount;
     fillDate(&s->date);
-
 Finally:
     return err;
 }
@@ -23,6 +22,7 @@ int addBonus(Bonus *b, uint64_t amount)
     WMC_PTR(b);
     b->amount = amount;
     fillDate(&b->date);
+    return b->amount
 Finally:
     return err;
 }
@@ -39,10 +39,12 @@ Finally:
     return err;
 }
 
-int fetchEarnsFromCli(Earnings *e)
+uint64_t fetchEarnsFromCli(Earnings *e)
 {
     char c;
     char buf[100];
+    int err = 0;
+    uint64_t totalEarns = 0;
     printf("Type of earnings (s - salary, b - bonus, o - others):");
     getchar(c);
     switch (c) {
@@ -51,14 +53,16 @@ int fetchEarnsFromCli(Earnings *e)
                 if (fgets(buf, 100, stdin) == NULL)
                     perror("Salary");
                 else
-                    addSalary(&e->s, atoi(buf));
+                    WMC_RET(addSalary(&e->s, atoi(buf)));
+                totalEarns = atoi(buf);
                 break;
         case 'b':
                 printf("Enter bonus amount:");
                 if (fgets(buf, 100, stdin) == NULL)
                     perror("Bonus");
                 else
-                    addBonus(&e->b, atoi(buf));
+                    WMC_RET(addBonus(&e->b, atoi(buf)));
+                totalEarns = atoi(buf);
                 break;
         case 'o':
                 char src[MAX_STR_LEN];
@@ -72,17 +76,23 @@ int fetchEarnsFromCli(Earnings *e)
                     perror("other Earnings amount");
                     break;
                 }
-                addOthEarns(&e->o[e->nOthEarns], src, atoi(buf));
+                WMC_RET(addOthEarns(&e->o[e->nOthEarns], src, atoi(buf)));
                 e->nOthEarns++;
+                totalEarns = atoi(buf);
                 break;
         default :
             printf("Invalid option %c!!! \t supported options <s, b, o>\n", c);
     }
+Finally:
+    if(err) {
+        printf("Unable to add earnings");
+    }
+    return totalEarns;
 }
 
-int addEarnings(Earnings *e)
+uint64_t addEarnings(Earnings *e)
 {
     Printf("Adding Earnings\n");
-    fetchEarnsFromCli(e);
+    return fetchEarnsFromCli(e);
 
 }

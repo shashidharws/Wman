@@ -22,3 +22,8 @@ int addUserToFamily(Family *f, char *name)
 {
     f->u[f->nMembers] = createUser(name);
 }
+
+int addUserEarnings(User *u)
+{
+    u->balance += addEarnings(&u->earns);
+}
