@@ -2,6 +2,7 @@
 #include <sys/time.h>
 #include <time.h>
 #include "misc.h"
+#define MAX_ITEM_NAME_LEN 100
 
 void fillDate(Date *d)
 {
@@ -29,20 +30,20 @@ int fetchItemsFromCli(Items *items, int maxItems)
             break;
         printf("###################################\n");
         printf("Item Name:");
-        if (fgets(iName, 100, stdin) == NULL)
+        if (fgets(iName, MAX_ITEM_NAME_LEN, stdin) == NULL)
             perror("Item name");
         else
             ASSIGN_STR(items[i].name, iName);
 
         printf("Price:");
-        if (fgets(amount, 100, stdin) == NULL)
+        if (fgets(amount, MAX_ITEM_NAME_LEN, stdin) == NULL)
             perror("Price");
         else
             items[i].amount = atoi(amount);
 
-        printf("Quantity:");
-        if (fgets(iName, 100, stdin) == NULL)
-            perror("Quantity [1]");
+        printf("Quantity [1]:");
+        if (fgets(quantity, MAX_ITEM_NAME_LEN, stdin) == NULL)
+            perror("Quantity");
         else
             items[i].quantity = atoi(quantity) ? atoi(quantity) : 1;
         printf("-----------------------------------\n");
