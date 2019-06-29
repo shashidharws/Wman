@@ -1,28 +1,24 @@
 #ifndef __EARNINGS_H__
 #define __EARNINGS_H__
-
+#include <inttypes.h>
+#include <sys/types.h>
+#include "misc.h"
 #define MAX_OTHE_EARNINGS 10
-
-typedef struct date {
-    uint32_t day;
-    uint32_t month;
-    uint32_t year;
-}Date;
 
 typedef struct _salary {
     uint64_t amount;
-    struct date date;
+    Date date;
 }Salary;
 
 typedef struct _bonus {
     uint64_t amount;
-    struct date date;
+    Date date;
 }Bonus;
 
 typedef struct _othEarns {
     char *src;
     uint64_t amount;
-    struct date date;
+    Date date;
 }OthEarns;
 
 
@@ -35,6 +31,7 @@ typedef struct _earnings {
     Salary s;
     Bonus b;
     OthEarns o[MAX_OTHE_EARNINGS];
+    int nOthEarns;
 }Earnings;
 
 #endif
