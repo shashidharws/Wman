@@ -36,7 +36,7 @@ int addGroceryWithItems(Grocery *g)
     int i;
     int totalAmount = 0;
     WMC_PTR(g);
-    addItems(g->items);
+    g->totalItems = addItems(g->items);
     for(i = 0; i < g->totalItems; i++)
     {
         g->totalAmount += g->items[i].amount;
@@ -74,6 +74,7 @@ int addShoppingWithItems(Shopping *s)
     int i;
     int totalAmount = 0;
     WMC_PTR(s);
+    s->totalItems = addItems(s->items);
     for(i = 0; i < s->totalItems; i++)
     {
         s->totalAmount += s->items[i].amount;
@@ -108,7 +109,7 @@ int addVehicle(Vehicle *v)
     int i;
     int totalAmount = 0;
     WMC_PTR(v);
-    for(i = 0; i < v->total_items; i++)
+    for(i = 0; i < v->totalItems; i++)
     {
         v->totalAmount += v->items[i].amount;
     }
@@ -123,7 +124,7 @@ int addOthExp(OthExp *o)
     int i;
     int totalAmount = 0;
     WMC_PTR(o);
-    for(i = 0; i < o->total_items; i++)
+    for(i = 0; i < o->totalItems; i++)
     {
         o->totalAmount += o->items[i].amount;
     }
@@ -143,6 +144,8 @@ int fetchExpensesFromCli(Expenses *e)
 {
     char c;
     char buf[100];
+    char name[MAX_STR_LEN];
+    uint64_t totalExp = 0;
     printf("Type of expense (e - emi, b - bills, g - grocery, t -travel, s -shopping, d - Dining, v - Vehicle, o - other):");
     getchar(c);
     switch (c) {
@@ -151,46 +154,48 @@ int fetchExpensesFromCli(Expenses *e)
                 printf("EMI Name:");
                 if (fgets(name, 100, stdin) == NULL)
                     perror("EMI name");
-                else
-                    ASSIGN_STR(e->name, name);
 
                 printf("Enter amount:");
-                if (fgets(amountt, 100, stdin) == NULL)
+                if (fgets(buf, 100, stdin) == NULL)
                     perror("amount");
-                else
-                    e->amountt = atoi(amount);
+
+                SMC_RET(addEmis(&e->e[e->nEmis], name, atoi(buf));
+                e->nEmis++;
+                totalExp = atoi(buf);
                 break;
         case 'b':
                 printf("Adding monthly Bills \n");
                 printf("Bill Name:");
                 if (fgets(name, 100, stdin) == NULL)
                     perror("Bill name");
-                else
-                    ASSIGN_STR(b->name, name);
 
                 printf("Enter amount:");
-                if (fgets(amount, 100, stdin) == NULL)
+                if (fgets(buf, 100, stdin) == NULL)
                     perror("amount");
-                else
-                    b->amount = atoi(amount);
+
+                SMC_RET(addBills(&e->b, name, atoi(buf)));
                 break;
         case 'g':
                 printf("Adding Grocery\n");
                 printf("Do you want to add item list?(y//n) [y]:");
                 getchar(c);
-                if(c == n) {
+                if(c == 'n') {
                     printf("Enter total amount:");
-                    if (fgets(buf, 100, stdin) == NULL) {
+                    if(fgets(buf, 100, stdin) == NULL) {
                         perror("Grocery");
                         break;
                     }
-                    addGrocery(&e->g, atoi(buf));
-                } else
+                    addGrocery(&e->g[e->nGroc], atoi(buf));
+                } else {
                     addGroceryWithItems(&e->g);
+                }
+                totalExp = e->g->totalAmount;
+                e->nGroc++; 
+
                 break;
         case 't':
                 printf("Adding Travel\n");
-                addItems(t->items);
+                t->totalItems = addItems(t->items);
                 addTravel(&e->t);
                 break;
         case 's':
@@ -223,7 +228,7 @@ int fetchExpensesFromCli(Expenses *e)
                 break;
         case 'v':
                 printf("Adding Vehiclel\n");
-                addItems(v->items);
+                v->totalItems = addItems(v->items);
                 addVehicle(&e->v);
                 break;
         case 'o':
