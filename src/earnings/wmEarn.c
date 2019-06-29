@@ -1,67 +1,33 @@
 #include <stdio.h>
+#include <sys/time.h>
+#include <time.h>
+#include <stdlib.h>
+#include <string.h>
 #include "earnings.h"
+#include "misc.h"
 
-#define INVALID_PTR 1
-#define CONDITION_FAIL 2
-#define RET_FAIL 2
-#define WMC_RET(call) \
-{\
-    if(call) {\
-        printf("ERR: %s:%d\n", __func__, __LINE__);\
-        err = RET_FAIL;\
-        goto Finally;\
-    }\
-}
-
-#define WMC_PTR(ptr) \
-{\
-    if(ptr == NULL) {\
-        printf("ERR: %s:%d [INVALID PTR]\n", __func__, __LINE__);\
-        err = INVALID_PTR;\
-        goto Finally;\
-    }\
-}
-
-#define ASSIGN_STR(ptr, str) \
-{\
-    WMC_PTR(str);\
-    ptr = (char *) calloc(strlen(str) + 1, 1);\
-    strncpy(ptr, str, strlen(str));\
-}
-
-void fillDate(Date *d)
-{
-    struct timeval tv;
-    struct tm *now;
-    gettimeofday(&tv, NULL);
-    now = gmtime(&tv.tv_sec);
-    d->month = now->tm_mon;
-    d->year = now->tm_year + 1900;
-    d->day = now->tm_wday;
-}
-
-int addSalary(salary *s, uint64_t amount)
+int addSalary(Salary *s, uint64_t amount)
 {
     int err = 0;
     WMC_PTR(s);
-    s.amount = amount;
+    s->amount = amount;
     fillDate(&s->date);
 
 Finally:
     return err;
 }
 
-int addBonus(bonus *b, uint64_t amount)
+int addBonus(Bonus *b, uint64_t amount)
 {
     int err = 0;
     WMC_PTR(b);
-    b.amount = amount;
+    b->amount = amount;
     fillDate(&b->date);
 Finally:
     return err;
 }
 
-int addOthEarns(othEarns *o, char *src, uint64_t amount)
+int addOthEarns(OthEarns *o, char *src, uint64_t amount)
 {
     int err = 0;
     WMC_PTR(o);
@@ -71,4 +37,9 @@ int addOthEarns(othEarns *o, char *src, uint64_t amount)
     fillDate(&o->date);
 Finally:
     return err;
+}
+
+int createEarns(Earnings *e)
+{
+    e->nOthEarns = 0;
 }
