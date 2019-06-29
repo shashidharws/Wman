@@ -5,6 +5,7 @@
 #include "profile.h"
 #include "earnings.h"
 
+
 typedef struct _user {
     char *name;
     Earnings earns;
