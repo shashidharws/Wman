@@ -40,10 +40,10 @@ int main()
             case 'x' : 
                     addUserExpenses(&_uPtr->exps);
                     break;
-            case 's' :
-                    addUserSavings(_uPtr);
-                    break;
 #endif
+            case 's' :
+                    printSavings(_uPtr->earns);
+                    break;
             default:
                 printf("Invalid option %c\n", c);
         }

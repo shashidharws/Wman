@@ -48,3 +48,10 @@ uint64_t addSavings(Savings *s)
     printf("Adding Savings\n");
     return fetchSavingsFromCli(s);
 }
+
+void printSavings(Savings *s, char *scheme, uint64_t investment)
+{
+    printDate(s.date);
+    printf(" : %s\b \t\t %lu \n", o.scheme, o.investment);
+}
+
