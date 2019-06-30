@@ -42,7 +42,7 @@ int main()
                     break;
 #endif
             case 's' :
-                    printSavings(_uPtr->earns);
+                    printSavings(_uPtr->nSavings);
                     break;
             default:
                 printf("Invalid option %c\n", c);

@@ -49,9 +49,9 @@ uint64_t addSavings(Savings *s)
     return fetchSavingsFromCli(s);
 }
 
-void printSavings(Savings *s, char *scheme, uint64_t investment)
+void printSavings(Savings s)
 {
     printDate(s.date);
-    printf(" : %s\b \t\t %lu \n", o.scheme, o.investment);
+    printf(" : %s\b \t\t %lu \n", s.scheme, s.investment);
 }
 

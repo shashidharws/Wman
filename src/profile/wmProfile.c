@@ -40,3 +40,10 @@ int addUserExpenses(User *u)
 {
     u->balance -= addExpenses(&u->exps); 
 }
+
+void printAllMySavings(Savings s)
+{
+    int i = 0;
+    for(i = 0; i < s[u->nSavings]; i++)
+        printSavings(s[i]);
+}
