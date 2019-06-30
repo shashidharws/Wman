@@ -1,4 +1,4 @@
-#include <stdio.h>
+#include <stdio.h>:wq
 #include "profile.h"
 User *_uPtr;
 
@@ -36,13 +36,11 @@ int main()
             case 'e' :
                     printAllMyEarnings(_uPtr->earns);
                     break;
-#if 0
             case 'x' : 
-                    addUserExpenses(&_uPtr->exps);
+                    printAllMyExpenses(_uPtr->exps);
                     break;
-#endif
             case 's' :
-                    printSavings(_uPtr->nSavings);
+                    printAllMySavings(_uPtr);
                     break;
             default:
                 printf("Invalid option %c\n", c);

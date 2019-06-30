@@ -104,7 +104,7 @@ void printSalary(Salary s)
 {
     if(s.date.year != 0) {
         printDate(s.date);
-        printf(" : Salary Amount \t\t:%lu\n", s.amount);
+        printf(" : Salary Amount \t\t:%llu\n", s.amount);
     }
 }
 
@@ -112,14 +112,14 @@ void printBonus(Bonus b)
 {
     if(b.date.year != 0) {
         printDate(b.date);
-        printf(" : Bonus amount \t\t:%lu\n", b.amount);
+        printf(" : Bonus amount \t\t:%llu\n", b.amount);
     }
 }
 
 void printOtherEarnings(OthEarns o)
 {
     printDate(o.date);
-    printf(" : %s\b \t\t %lu \n", o.src, o.amount);
+    printf(" : %s\b \t\t %llu \n", o.src, o.amount);
 }
 
 void printAllMyEarnings(Earnings e)

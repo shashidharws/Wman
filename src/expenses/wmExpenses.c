@@ -290,3 +290,103 @@ int addExpenses(Expenses *e)
     fetchExpensesFromCli(e);
 
 }
+
+void printItems(Items i[], int nItems)
+{
+    int j;
+    for(j = 0; j < nItems; j++)
+    {
+        printf(" Item Name: %s\b \t\t Item Amount: \t\t:%lu\n",i[j].name, i[j].amount);
+    }
+}
+
+void printEmis(Emis e)
+{
+    if(e.date.year != 0) {
+        printDate(e.date);
+        printf(" Name: %s\b \t\t EMI Amount: \t\t:%lu\n",e.name, e.amount);
+    }
+}
+
+void printBills(Bills b)
+{
+    if(b.date.year != 0) {
+        printDate(b.date);
+        printf(" Name: %s\b \t\t Amount: \t\t:%lu\n",b.name, b.amount);
+    }
+}
+
+void printGrocery(Grocery g)
+{
+    printDate(g.date);
+    if(g->totalItems != 0)
+    {
+        printItems(g.items, g.totalItems);
+    }
+    printf("Total Amount: %lu", g.totalItems);
+
+}
+
+void printTravel(Travel t)
+{
+    printDate(t.date);
+    if(t->totalItems != 0)
+    {
+        printItems(t.items, t.totalItems);
+    }
+    printf("Total Amount: %lu", t.totalItems);
+
+}
+
+void printShopping(Shopping s)
+{   
+    printDate(s.date);
+    if(s->totalItems != 0)
+    {
+        printItems(s.items, s.totalItems);
+    }
+    printf("Total Amount: %lu", s.totalItems);
+    
+} 
+
+void printVehicle(Vehicle v)
+{
+    printDate(v.date);
+    if(v->totalItems != 0)
+    {
+        printItems(v.items, v.totalItems);
+    }
+    printf("Total Amount: %lu", v.totalItems);
+
+}
+
+void printDining(Dining d)
+{
+    printDate(d.date);
+    printf("Summary : %s\b \t\t %lu \n", d.src, d.amount);
+}
+
+void printOtherExpenses(OthExp o)
+{
+    printDate(o.date);
+    if(o->totalItems != 0)
+    {
+        printItems(o.items, o.totalItems);
+    }
+    printf("Total Amount: %lu", o.totalItems);
+
+}
+
+void printAllMyExpenses(Expenses e)
+{
+    int i = 0;
+    printEmis(e.e);
+    printBills(e.b);
+    for(i = 0; i < e.nOthEarns; i++) {
+        printGrocery(e.g[i]);
+        printTravel(e.t[i]);
+        printShopping(e.s[i]);
+        printVehicle(e.v[i]);
+        printOtherExpenses(e.o[i]);
+    }
+}

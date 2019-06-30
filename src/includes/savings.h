@@ -12,4 +12,5 @@ typedef struct _savings {
 }Savings;
 
 uint64_t addSavings(Savings *s);
+void printSavings(Savings s);
 #endif
