@@ -24,7 +24,7 @@ int addBills(Bills *b, char *name, uint64_t amount)
     WMC_PTR(b);
     WMC_PTR(name);
     ASSIGN_STR(b->name, name);
-    e->amount = amount;
+    b->amount = amount;
     fillDate(&b->date);
 Finally:
     return err;
@@ -48,9 +48,12 @@ Finally:
 
 int addGrocery(Grocery *g, uint64_t amount)
 {
+    int err = 0;
     WMC_PTR(g);
     g->totalAmount = amount;
     fillDate(&g->date);
+Finally:
+    return err;
 }
 
 int addTravel(Travel *t)
@@ -86,9 +89,12 @@ Finally:
 
 int addShopping(Shopping *s, uint64_t amount)
 {
+    int err = 0;
     WMC_PTR(s);
     s->totalAmount = amount;
-    fillDate(&g->date);
+    fillDate(&s->date);
+Finally:
+    return err;
 }
 
 int addDining(Dining *d, char *summary, uint64_t amount)
@@ -128,26 +134,33 @@ int addOthExpWithItems(OthExp *o)
     {
         o->totalAmount += o->items[i].amount;
     }
-    fillDate(&t->date);
+    fillDate(&o->date);
 Finally:
     return err;
 }
 
-int addOthExp(Grocery *o, uint64_t amount)
+int addOthExp(OthExp *o, uint64_t amount)
 {
+    int err = 0;
     WMC_PTR(o);
     o->totalAmount = amount;
     fillDate(&o->date);
+Finally:
+    return err;
 }
 
 uint64_t fetchExpensesFromCli(Expenses *e)
 {
+    int err = 0;
     char c;
     char buf[100];
     char name[MAX_STR_LEN];
+    char summary[MAX_STR_LEN];
     uint64_t totalExp = 0;
     printf("Type of expense (e - emi, b - bills, g - grocery, t -travel, s -shopping, d - Dining, v - Vehicle, o - other):");
-    getchar(c);
+    c = getchar();
+    if(c != '\n')
+        getchar();
     switch (c) {
         case 'e':
                 printf("Adding EMIs \n");
@@ -160,7 +173,7 @@ uint64_t fetchExpensesFromCli(Expenses *e)
                     perror("amount");
 
                 WMC_RET(addEmis(&e->e[e->nEmis], name, atoi(buf)));
-                totalExp = e->e[e->nEmis]->amount;
+                totalExp = e->e[e->nEmis].amount;
                 e->nEmis++;
                 break;
         case 'b':
@@ -174,13 +187,15 @@ uint64_t fetchExpensesFromCli(Expenses *e)
                     perror("amount");
 
                 WMC_RET(addBills(&e->b[e->nBills], name, atoi(buf)));
-                totalExp = e->b[e->nBills]->amount;
+                totalExp = e->b[e->nBills].amount;
                 e->nBills++;
                 break;
         case 'g':
                 printf("Adding Grocery\n");
                 printf("Do you want to add item list?(y//n) [y]:");
-                getchar(c);
+                c = getchar();
+                if(c != '\n')
+                    getchar();
                 if(c == 'n') {
                     printf("Enter total amount:");
                     if(fgets(buf, 100, stdin) == NULL) {
@@ -191,31 +206,33 @@ uint64_t fetchExpensesFromCli(Expenses *e)
                 } else {
                     WMC_RET(addGroceryWithItems(&e->g[e->nGroc]));
                 }
-                totalExp = e->g[e->nGroc]->totalAmount;
+                totalExp = e->g[e->nGroc].totalAmount;
                 e->nGroc++; 
 
                 break;
         case 't':
                 printf("Adding Travel\n");
-                t->totalItems = addItems(t->items);
-                WMC_RET(addTravel(&e->t[e->ntrav]));
-                totalExp = e->t[e->ntrav]->totalAmount;
+                e->t[e->nTrav].totalItems = addItems(e->t[e->nTrav].items);
+                WMC_RET(addTravel(&e->t[e->nTrav]));
+                totalExp = e->t[e->nTrav].totalAmount;
                 e->nTrav++;
                 break;
         case 's':
                 printf("Adding Shopping list:\n");
                 printf("Do you want to add item list?(y//n) [y]:");
-                getchar(c);
-                if(c == n) {
+                c = getchar();
+                if(c != '\n')
+                    getchar();
+                if(c == 'n') {
                     printf("Enter total amount:");
                     if (fgets(buf, 100, stdin) == NULL) {
                         perror("Shopping");
                         break;
                     }
-                    WMC_RET(addShopping(&e->s[e->nShop], atoi(buf));
+                    WMC_RET(addShopping(&e->s[e->nShop], atoi(buf)));
                 } else
                     WMC_RET(addShoppingWithItems(&e->s[e->nShop]));
-                totalExp = e->s[e->nShop]->totalAmount;
+                totalExp = e->s[e->nShop].totalAmount;
                 e->nShop++;
                 break;
         case 'd':
@@ -225,25 +242,29 @@ uint64_t fetchExpensesFromCli(Expenses *e)
                     perror("Summary");
 
                 printf("Amount:");
-                if (fgets(amount, 100, stdin) == NULL)
+                if (fgets(buf, 100, stdin) == NULL)
                     perror("amount");
 
-                WMC_RET(addDinings(&e->d[e->nDine], name, atoi(buf)));
-                totalExp = e->d[e->nDine]->amount;
+                WMC_RET(addDining(&e->d[e->nDine], name, atoi(buf)));
+                totalExp = e->d[e->nDine].amount;
                 e->nDine++;
                 break;
         case 'v':
                 printf("Adding Vehiclel\n");
-                v->totalItems = addItems(v->items);
+                e->v[e->nVehi].totalItems = addItems(e->v[e->nVehi].items);
                 WMC_RET(addVehicle(&e->v[e->nVehi]));
-                totalExp = e->v[e->nVehi]->totalAmount;
+                totalExp = e->v[e->nVehi].totalAmount;
                 e->nVehi++;
                 break;
         case 'o':
                 printf("Adding other expenses :\n");
                 printf("Do you want to add item list?(y//n) [y]:");
-                getchar(c);
-                if(c == n) {
+                c = getchar();
+                if(c != '\n')
+                if(c != '\n')
+                    getchar();
+                    getchar();
+                if(c == 'n') {
                     printf("Enter total amount:");
                     if (fgets(buf, 100, stdin) == NULL) {
                         perror("OthExp");
@@ -252,12 +273,13 @@ uint64_t fetchExpensesFromCli(Expenses *e)
                     WMC_RET(addOthExp(&e->o[e->nOthe], atoi(buf)));
                 } else
                     WMC_RET(addOthExpWithItems(&e->o[e->nOthe]));
-                totalExp = e->o[e->nOthe]->totalAmount;
+                totalExp = e->o[e->nOthe].totalAmount;
                 e->nOthe++;
                 break;
         default:
                 printf("Invalid option %c!!! \t supported options <e, b, g, t, s, d, v, o>\n", c);
     }
+Finally:
     return totalExp;
 
 }
@@ -265,6 +287,6 @@ uint64_t fetchExpensesFromCli(Expenses *e)
 int addExpenses(Expenses *e)
 {
     printf("Adding expenses\n");
-    fetchExpensesFromCli(e)
+    fetchExpensesFromCli(e);
 
 }

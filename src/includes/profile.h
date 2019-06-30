@@ -5,7 +5,8 @@
 #include "misc.h"
 #include "profile.h"
 #include "earnings.h"
-#include  "savings.h"
+#include "savings.h"
+#include "expenses.h"
 
 
 typedef struct _user {
@@ -13,7 +14,7 @@ typedef struct _user {
     Earnings earns;
     Savings s[MAX_SAVINGS];
     int nSavings;
-    //Expenses exps;
+    Expenses exps;
     uint64_t balance;
 }User;
 

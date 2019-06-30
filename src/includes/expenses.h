@@ -95,4 +95,7 @@ typedef struct _expenses {
     int nOthe;
 }Expenses;
 
+
+int addExpenses(Expenses *e);
+
 #endif

@@ -20,11 +20,9 @@ int main()
             case 'e' :
                     addUserEarnings(_uPtr);
                     break;
-#if 0
             case 'x' : 
-                    addUserExpenses(&_uPtr->exps);
+                    addUserExpenses(_uPtr);
                     break;
-#endif
             case 's' :
                     addUserSavings(_uPtr);
                     break;

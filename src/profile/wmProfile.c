@@ -36,9 +36,7 @@ int addUserSavings(User *u)
     u->nSavings++;
 }
 
-#if 0
 int addUserExpenses(User *u)
 {
     u->balance -= addExpenses(&u->exps); 
 }
-#endif

@@ -50,5 +50,6 @@ typedef struct date {
 
 void fillDate(Date *d);
 void printDate(Date d);
+int addItems(Items *items);
 
 #endif
