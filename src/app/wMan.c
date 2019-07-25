@@ -1,4 +1,4 @@
-#include <stdio.h>:wq
+#include <stdio.h>
 #include "profile.h"
 User *_uPtr;
 

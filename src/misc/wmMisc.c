@@ -25,7 +25,7 @@ int fetchItemsFromCli(Items *items, int maxItems)
     char c = 'y';
     for(i = 0; i < maxItems; i++) {
         c = 'y';
-        printf("Want to enter Item?(y\\n) [y]:"); 
+        printf("Want to enter Item?(y\\n) [y]:");
         c = getchar();
         if(c == 'n')
             break;
@@ -42,7 +42,7 @@ int fetchItemsFromCli(Items *items, int maxItems)
         else
             items[i].amount = atoi(amount);
 
-        printf("Quantity [1]:");
+        printf("Quantity:");
         if (fgets(quantity, MAX_ITEM_NAME_LEN, stdin) == NULL)
             perror("Quantity");
         else

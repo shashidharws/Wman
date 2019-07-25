@@ -12,7 +12,7 @@
 #define MAX_DINING 10
 #define MAX_VEHICLE 62
 
- 
+
 typedef struct _emis {
     char *name;
     uint64_t amount;
@@ -77,18 +77,18 @@ typedef struct _othExp {
   * o : any other expenses
   */
 typedef struct _expenses {
-    Emis e[MAX_EMIS];
-    int nEmis;
-    Bills b[MAX_BILLS];
-    int nBills;
+    Emis e;
+    // int nEmis;
+    Bills b;
+    // int nBills;
     Grocery g[MAX_GROCERY];
     int nGroc;
     Travel t[MAX_TRAVEL];
     int nTrav;
     Shopping s[MAX_SHOPPING];
     int nShop;
-    Dining d[MAX_DINING];
-    int nDine;
+    Dining d;
+    // int nDine;
     Vehicle v[MAX_VEHICLE];
     int nVehi;
     OthExp o[MAX_OTHER_EXPENSES];
@@ -96,6 +96,6 @@ typedef struct _expenses {
 }Expenses;
 
 
-int addExpenses(Expenses *e);
-
+uint64_t addExpenses(Expenses *e);
+void printAllMyExpenses(Expenses e);
 #endif
