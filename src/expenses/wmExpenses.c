@@ -294,7 +294,7 @@ void printItems(Items i[], int nItems)
     int j;
     for(j = 0; j < nItems; j++)
     {
-        printf(" Item Name: %s\b \t\t Item Amount: \t\t:%llu\n",i[j].name, i[j].amount);
+        printf(" Item Name: %s\b \t\t Item Amount: \t\t:%lu\n",i[j].name, i[j].amount);
     }
 }
 
@@ -302,7 +302,7 @@ void printEmis(Emis e)
 {
     if(e.date.year != 0) {
         printDate(e.date);
-        printf(" Name: %s\b \t\t EMI Amount: \t\t:%llu\n",e.name, e.amount);
+        printf(" Name: %s\b \t\t EMI Amount: \t\t:%lu\n",e.name, e.amount);
     }
 }
 
@@ -310,69 +310,80 @@ void printBills(Bills b)
 {
     if(b.date.year != 0) {
         printDate(b.date);
-        printf(" Name: %s\b \t\t Amount: \t\t:%llu\n",b.name, b.amount);
+        printf(" Name: %s\b \t\t Amount: \t\t:%lu\n",b.name, b.amount);
     }
 }
 
 void printGrocery(Grocery g)
 {
-    printDate(g.date);
-    if(g.totalItems != 0)
-    {
-        printItems(g.items, g.totalItems);
+    if(g.date.year != 0) {
+        printDate(g.date);
+        if(g.totalItems != 0)
+        {
+            printItems(g.items, g.totalItems);
+        }
+        printf("Total Amount: %lu", g.totalAmount);
     }
-    printf("Total Amount: %d", g.totalItems);
-
 }
 
 void printTravel(Travel t)
 {
-    printDate(t.date);
-    if(t.totalItems != 0)
-    {
-        printItems(t.items, t.totalItems);
+    if(t.date.year != 0) {
+        printDate(t.date);
+        if(t.totalItems != 0)
+        {
+            printItems(t.items, t.totalItems);
+        }
+        printf("Total Amount: %d", t.totalItems);
     }
-    printf("Total Amount: %d", t.totalItems);
 
 }
 
 void printShopping(Shopping s)
 {
-    printDate(s.date);
-    if(s.totalItems != 0)
-    {
-        printItems(s.items, s.totalItems);
+    if(s.date.year != 0) {
+        printDate(s.date);
+        if(s.totalItems != 0)
+        {
+            printItems(s.items, s.totalItems);
+        }
+        printf("Total Amount: %lu", s.totalAmount);
     }
-    printf("Total Amount: %llu", s.totalAmount);
 
 }
 
 void printVehicle(Vehicle v)
 {
-    printDate(v.date);
-    if(v.totalItems != 0)
-    {
-        printItems(v.items, v.totalItems);
+    if(v.date.year != 0) {
+        printDate(v.date);
+        if(v.totalItems != 0)
+        {
+            printItems(v.items, v.totalItems);
+        }
+        printf("Total Amount: %d", v.totalItems);
     }
-    printf("Total Amount: %d", v.totalItems);
 
 }
 
 void printDining(Dining d)
 {
-    printDate(d.date);
-    printf("Summary : %s\b \t\t %llu \n", d.summary, d.amount);
+
+    if(d.date.year != 0) {
+        printDate(d.date);
+        printf("Summary : %s\b \t\t %lu \n", d.summary, d.amount);
+    }
 }
 
 void printOtherExpenses(OthExp o)
 {
-    printDate(o.date);
-    if(o.totalItems != 0)
-    {
-        printItems(o.items, o.totalItems);
+    if(o.date.year != 0) {
+        printDate(o.date);
+        if(o.totalItems != 0)
+        {
+            printItems(o.items, o.totalItems);
+        }
+        printf("Total Amount: %d\n", o.totalItems);
     }
-    printf("Total Amount: %d", o.totalItems);
-
 }
 
 void printAllMyExpenses(Expenses e)
@@ -381,11 +392,14 @@ void printAllMyExpenses(Expenses e)
     printDining(e.d);
     printEmis(e.e);
     printBills(e.b);
-    for(i = 0; i < e.nOthe; i++) {
+    for(i = 0; i < e.nGroc; i++)
         printGrocery(e.g[i]);
+    for(i = 0; i < e.nTrav; i++)
         printTravel(e.t[i]);
+    for(i = 0; i < e.nShop; i++)
         printShopping(e.s[i]);
+    for(i = 0; i < e.nVehi; i++)
         printVehicle(e.v[i]);
+    for(i = 0; i < e.nOthe; i++)
         printOtherExpenses(e.o[i]);
-    }
 }

@@ -52,6 +52,6 @@ uint64_t addSavings(Savings *s)
 void printSavings(Savings s)
 {
     printDate(s.date);
-    printf(" : %s\b \t\t %llu \n", s.scheme, s.investment);
+    printf(" : %s\b \t\t %lu \n", s.scheme, s.investment);
 }
 

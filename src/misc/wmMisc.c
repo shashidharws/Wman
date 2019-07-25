@@ -27,6 +27,7 @@ int fetchItemsFromCli(Items *items, int maxItems)
         c = 'y';
         printf("Want to enter Item?(y\\n) [y]:");
         c = getchar();
+        getchar();
         if(c == 'n')
             break;
         printf("###################################\n");
