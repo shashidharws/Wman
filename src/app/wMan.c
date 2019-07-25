@@ -43,8 +43,12 @@ int main()
                     printAllMySavings(_uPtr);
                     break;
             default:
-                printf("Invalid option %c\n", c);
+                //printf("Invalid option %c\n", c);
+                break;
         }
+
+    printf("current balance : %lu\n", _uPtr->balance);
+    printf("==========================================================\n");
     }
 }
 

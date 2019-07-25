@@ -162,7 +162,6 @@ uint64_t fetchExpensesFromCli(Expenses *e)
     if(c != '\n')
         getchar();
     switch (c) {
-      
         case 'e':
                 printf("Adding EMIs \n");
                 printf("EMI Name:");
