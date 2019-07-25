@@ -172,9 +172,11 @@ uint64_t fetchExpensesFromCli(Expenses *e)
                 if (fgets(buf, 100, stdin) == NULL)
                     perror("amount");
 
-                WMC_RET(addEmis(&e->e, name, atoi(buf)));
-                totalExp = e->e.amount;
+                WMC_RET(addEmis(&e->e[e->nEmis], atoi(buf)));
+                totalExp = e->e[e->nEmis].amount;
+                e->nEmis++;
                 break;
+
         case 'b':
                 printf("Adding monthly Bills \n");
                 printf("Bill Name:");
@@ -185,9 +187,11 @@ uint64_t fetchExpensesFromCli(Expenses *e)
                 if (fgets(buf, 100, stdin) == NULL)
                     perror("amount");
 
-                WMC_RET(addBills(&e->b, name, atoi(buf)));
-                totalExp = e->b.amount;
+                WMC_RET(addBills(&e->e[e->nBills], atoi(buf)));
+                totalExp = e->e[e->nBills].amount;
+                e->nBills++;
                 break;
+
         case 'g':
                 printf("Adding Grocery\n");
                 printf("Do you want to add item list?(y//n) [y]:");
@@ -243,8 +247,9 @@ uint64_t fetchExpensesFromCli(Expenses *e)
                 if (fgets(buf, 100, stdin) == NULL)
                     perror("amount");
 
-                WMC_RET(addDining(&e->d, name, atoi(buf)));
-                totalExp = e->d.amount;
+                WMC_RET(addDining(&e->d[e->nDine], atoi(buf)));
+                totalExp = e->d[e->nDine].amount;
+                e->nDine++;
                 break;
         case 'v':
                 printf("Adding Vehiclel\n");
