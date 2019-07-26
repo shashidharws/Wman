@@ -59,7 +59,7 @@ Finally:
 int addItems(Items *items)
 {
     printf("Adding Items \n");
-    fetchItemsFromCli(items, MAX_ITEMS);
+    return fetchItemsFromCli(items, MAX_ITEMS);
 }
 
 void printDate(Date d)
