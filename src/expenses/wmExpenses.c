@@ -172,7 +172,7 @@ uint64_t fetchExpensesFromCli(Expenses *e)
                 if (fgets(buf, 100, stdin) == NULL)
                     perror("amount");
 
-                WMC_RET(addEmis(&e->e[e->nEmis], atoi(buf)));
+                WMC_RET(addEmis(&e->e[e->nEmis], name, atoi(buf)));
                 totalExp = e->e[e->nEmis].amount;
                 e->nEmis++;
                 break;
@@ -187,8 +187,8 @@ uint64_t fetchExpensesFromCli(Expenses *e)
                 if (fgets(buf, 100, stdin) == NULL)
                     perror("amount");
 
-                WMC_RET(addBills(&e->e[e->nBills], atoi(buf)));
-                totalExp = e->e[e->nBills].amount;
+                WMC_RET(addBills(&e->b[e->nBills], name, atoi(buf)));
+                totalExp = e->b[e->nBills].amount;
                 e->nBills++;
                 break;
 
@@ -247,7 +247,7 @@ uint64_t fetchExpensesFromCli(Expenses *e)
                 if (fgets(buf, 100, stdin) == NULL)
                     perror("amount");
 
-                WMC_RET(addDining(&e->d[e->nDine], atoi(buf)));
+                WMC_RET(addDining(&e->d[e->nDine], summary, atoi(buf)));
                 totalExp = e->d[e->nDine].amount;
                 e->nDine++;
                 break;
@@ -393,9 +393,12 @@ void printOtherExpenses(OthExp o)
 void printAllMyExpenses(Expenses e)
 {
     int i = 0;
-    printDining(e.d);
-    printEmis(e.e);
-    printBills(e.b);
+    for(i = 0; i < e.nDine; i++)
+        printDining(e.d[i]);
+    for(i = 0; i < e.nEmis; i++)
+        printEmis(e.e[i]);
+    for(i = 0; i < e.nBills; i++)
+        printBills(e.b[i]);
     for(i = 0; i < e.nGroc; i++)
         printGrocery(e.g[i]);
     for(i = 0; i < e.nTrav; i++)

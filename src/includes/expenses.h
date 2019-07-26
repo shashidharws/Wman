@@ -77,9 +77,9 @@ typedef struct _othExp {
   * o : any other expenses
   */
 typedef struct _expenses {
-    Emis e;
+    Emis e[MAX_EMIS];
     int nEmis;
-    Bills b;
+    Bills b[MAX_BILLS];
     int nBills;
     Grocery g[MAX_GROCERY];
     int nGroc;
@@ -87,7 +87,7 @@ typedef struct _expenses {
     int nTrav;
     Shopping s[MAX_SHOPPING];
     int nShop;
-    Dining d;
+    Dining d[MAX_DINING];
     int nDine;
     Vehicle v[MAX_VEHICLE];
     int nVehi;
