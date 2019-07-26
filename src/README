@@ -1,1 +1,3 @@
 gcc app/wMan.c profile/wmProfile.c earnings/wmEarn.c misc/wmMisc.c savings/wmSavings.c expenses/wmExpenses.c -I includes
+
+TEST
