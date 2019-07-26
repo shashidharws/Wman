@@ -15,7 +15,7 @@ typedef struct _user {
     Savings s[MAX_SAVINGS];
     int nSavings;
     Expenses exps;
-    uint64_t balance;
+    int64_t balance;
 }User;
 
 typedef struct _family {

@@ -47,7 +47,7 @@ int main()
                 break;
         }
 
-    printf("current balance : %lu\n", _uPtr->balance);
+    printf("current balance : %ld\n", _uPtr->balance);
     printf("==========================================================\n");
     }
 }
